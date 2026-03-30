@@ -16,7 +16,7 @@ class categoryClass:
         self.var_name=StringVar()
         #--------------- title ---------------------
         lbl_title=Label(self.root,text="Manage Product Category",font=("goudy old style",30),bg="#184a45",fg="white",bd=3,relief=RIDGE).pack(side=TOP,fill=X,padx=10,pady=20)
-        
+
         lbl_mame=Label(self.root,text="Enter Category Name",font=("goudy old style",30),bg="white").place(x=50,y=100)
         txt_mame=Entry(self.root,textvariable=self.var_name,bg="lightyellow",font=("goudy old style",18)).place(x=50,y=170,width=300)
 
@@ -29,7 +29,7 @@ class categoryClass:
 
         scrolly=Scrollbar(cat_frame,orient=VERTICAL)
         scrollx=Scrollbar(cat_frame,orient=HORIZONTAL)\
-        
+
         self.CategoryTable=ttk.Treeview(cat_frame,columns=("cid","name"),yscrollcommand=scrolly.set,xscrollcommand=scrollx.set)
         scrollx.pack(side=BOTTOM,fill=X)
         scrolly.pack(side=RIGHT,fill=Y)
@@ -40,7 +40,7 @@ class categoryClass:
         self.CategoryTable["show"]="headings"
         self.CategoryTable.column("cid",width=90)
         self.CategoryTable.column("name",width=100)
-        
+
         self.CategoryTable.pack(fill=BOTH,expand=1)
         self.CategoryTable.bind("<ButtonRelease-1>",self.get_data)
         self.show()
@@ -92,7 +92,7 @@ class categoryClass:
         except Exception as ex:
             messagebox.showerror("Error",f"Error due to : {str(ex)}")
 
-    
+
     def clear(self):
         self.var_name.set("")
         self.show()
@@ -103,7 +103,7 @@ class categoryClass:
         row=content['values']
         self.var_cat_id.set(row[0])
         self.var_name.set(row[1])
-    
+
     def delete(self):
         con=sqlite3.connect(database=r'ims.db')
         cur=con.cursor()

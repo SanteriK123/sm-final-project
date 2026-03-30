@@ -31,14 +31,14 @@ class billClass:
         ProductFrame1.place(x=6,y=110,width=410,height=550)
 
         pTitle=Label(ProductFrame1,text="All Products",font=("goudy old style",20,"bold"),bg="#262626",fg="white").pack(side=TOP,fill=X)
-        
+
         self.var_search=StringVar()
 
         ProductFrame2=Frame(ProductFrame1,bd=2,relief=RIDGE,bg="white")
         ProductFrame2.place(x=2,y=42,width=398,height=90)
 
         lbl_search=Label(ProductFrame2,text="Search Product | By Name",font=("times new roman",15,"bold"),bg="white",fg="green").place(x=2,y=5)
-        
+
         lbl_search=Label(ProductFrame2,text="Product Name",font=("times new roman",15,"bold"),bg="white").place(x=2,y=45)
         txt_search=Entry(ProductFrame2,textvariable=self.var_search,font=("times new roman",15),bg="lightyellow").place(x=128,y=47,width=150,height=22)
         btn_search=Button(ProductFrame2,text="Search",command=self.search,font=("goudy old style",15),bg="#2196f3",fg="white",cursor="hand2").place(x=285,y=45,width=100,height=25)
@@ -49,7 +49,7 @@ class billClass:
 
         scrolly=Scrollbar(ProductFrame3,orient=VERTICAL)
         scrollx=Scrollbar(ProductFrame3,orient=HORIZONTAL)\
-        
+
         self.product_Table=ttk.Treeview(ProductFrame3,columns=("pid","name","price","qty","status"),yscrollcommand=scrolly.set,xscrollcommand=scrollx.set)
         scrollx.pack(side=BOTTOM,fill=X)
         scrolly.pack(side=RIGHT,fill=Y)
@@ -83,7 +83,7 @@ class billClass:
 
         lbl_name=Label(CustomerFrame,text="Name",font=("times new roman",15),bg="white").place(x=5,y=35)
         txt_name=Entry(CustomerFrame,textvariable=self.var_cname,font=("times new roman",13),bg="lightyellow").place(x=80,y=35,width=180)
-        
+
         lbl_contact=Label(CustomerFrame,text="Contact No.",font=("times new roman",15),bg="white").place(x=270,y=35)
         txt_contact=Entry(CustomerFrame,textvariable=self.var_contact,font=("times new roman",15),bg="lightyellow").place(x=380,y=35,width=140)
 
@@ -127,7 +127,7 @@ class billClass:
 
         scrolly=Scrollbar(Cart_Frame,orient=VERTICAL)
         scrollx=Scrollbar(Cart_Frame,orient=HORIZONTAL)\
-        
+
         self.CartTable=ttk.Treeview(Cart_Frame,columns=("pid","name","price","qty"),yscrollcommand=scrolly.set,xscrollcommand=scrollx.set)
         scrollx.pack(side=BOTTOM,fill=X)
         scrolly.pack(side=RIGHT,fill=Y)
@@ -169,7 +169,7 @@ class billClass:
 
         btn_clear_cart=Button(Add_CartWidgets_Frame,command=self.clear_cart,text="Clear",font=("times new roman",15,"bold"),bg="lightgray",cursor="hand2").place(x=180,y=70,width=150,height=30)
         btn_add_cart=Button(Add_CartWidgets_Frame,command=self.add_update_cart,text="Add | Update",font=("times new roman",15,"bold"),bg="orange",cursor="hand2").place(x=340,y=70,width=180,height=30)
-        
+
         #------------------- billing area -------------------
         billFrame=Frame(self.root,bd=2,relief=RIDGE,bg="white")
         billFrame.place(x=953,y=110,width=400,height=410)
@@ -259,7 +259,7 @@ class billClass:
         self.lbl_inStock.config(text=f"In Stock [{str(row[3])}]")
         self.var_stock.set(row[3])
         self.var_qty.set('1')
-    
+
     def get_data_cart(self,ev):
         f=self.CartTable.focus()
         content=(self.CartTable.item(f))
@@ -270,7 +270,7 @@ class billClass:
         self.var_qty.set(row[3])
         self.lbl_inStock.config(text=f"In Stock [{str(row[4])}]")
         self.var_stock.set(row[4])
-        
+
     def add_update_cart(self):
         if self.var_pid.get()=="":
             messagebox.showerror("Error","Please select product from the list",parent=self.root)
@@ -415,7 +415,7 @@ class billClass:
         self.txt_bill_area.delete('1.0',END)
         self.cartTitle.config(text=f"Cart \t Total Products: [0]")
         self.var_search.set("")
-        
+
     def update_date_time(self):
         time_=time.strftime("%I:%M:%S")
         date_=time.strftime("%d-%m-%Y")

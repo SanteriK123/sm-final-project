@@ -78,7 +78,7 @@ class productClass:
 
         scrolly=Scrollbar(product_frame,orient=VERTICAL)
         scrollx=Scrollbar(product_frame,orient=HORIZONTAL)\
-        
+
         self.ProductTable=ttk.Treeview(product_frame,columns=("pid","Category","Supplier","name","price","qty","status"),yscrollcommand=scrolly.set,xscrollcommand=scrollx.set)
         scrollx.pack(side=BOTTOM,fill=X)
         scrolly.pack(side=RIGHT,fill=Y)
@@ -99,7 +99,7 @@ class productClass:
         self.ProductTable.column("price",width=100)
         self.ProductTable.column("qty",width=100)
         self.ProductTable.column("status",width=100)
-        
+
         self.ProductTable.pack(fill=BOTH,expand=1)
         self.ProductTable.bind("<ButtonRelease-1>",self.get_data)
         self.show()
@@ -128,8 +128,8 @@ class productClass:
         except Exception as ex:
             messagebox.showerror("Error",f"Error due to : {str(ex)}")
 
-    
-    
+
+
     def add(self):
         con=sqlite3.connect(database=r'ims.db')
         cur=con.cursor()
@@ -241,7 +241,7 @@ class productClass:
         self.var_searchtxt.set("")
         self.show()
 
-    
+
     def search(self):
         con=sqlite3.connect(database=r'ims.db')
         cur=con.cursor()

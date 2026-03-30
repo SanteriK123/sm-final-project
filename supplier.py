@@ -17,8 +17,8 @@ class supplierClass:
         self.var_sup_invoice=StringVar()
         self.var_name=StringVar()
         self.var_contact=StringVar()
-        
-        
+
+
         #---------- Search Frame -------------
         lbl_search=Label(self.root,text="Invoice No.",bg="white",font=("goudy old style",15))
         lbl_search.place(x=700,y=80)
@@ -33,20 +33,20 @@ class supplierClass:
         #---------- row 1 ----------------
         lbl_supplier_invoice=Label(self.root,text="Invoice No.",font=("goudy old style",15),bg="white").place(x=50,y=80)
         txt_supplier_invoice=Entry(self.root,textvariable=self.var_sup_invoice,font=("goudy old style",15),bg="lightyellow").place(x=180,y=80,width=180)
-        
+
         #---------- row 2 ----------------
         lbl_name=Label(self.root,text="Name",font=("goudy old style",15),bg="white").place(x=50,y=120)
         txt_name=Entry(self.root,textvariable=self.var_name,font=("goudy old style",15),bg="lightyellow").place(x=180,y=120,width=180)
-        
+
         #---------- row 3 ----------------
         lbl_contact=Label(self.root,text="Contact",font=("goudy old style",15),bg="white").place(x=50,y=160)
         txt_contact=Entry(self.root,textvariable=self.var_contact,font=("goudy old style",15),bg="lightyellow").place(x=180,y=160,width=180)
-        
+
         #---------- row 4 ----------------
         lbl_desc=Label(self.root,text="Description",font=("goudy old style",15),bg="white").place(x=50,y=200)
         self.txt_desc=Text(self.root,font=("goudy old style",15),bg="lightyellow")
         self.txt_desc.place(x=180,y=200,width=470,height=120)
-        
+
         #-------------- buttons -----------------
         btn_add=Button(self.root,text="Save",command=self.add,font=("goudy old style",15),bg="#2196f3",fg="white",cursor="hand2").place(x=180,y=370,width=110,height=35)
         btn_update=Button(self.root,text="Update",command=self.update,font=("goudy old style",15),bg="#4caf50",fg="white",cursor="hand2").place(x=300,y=370,width=110,height=35)
@@ -59,7 +59,7 @@ class supplierClass:
 
         scrolly=Scrollbar(sup_frame,orient=VERTICAL)
         scrollx=Scrollbar(sup_frame,orient=HORIZONTAL)\
-        
+
         self.SupplierTable=ttk.Treeview(sup_frame,columns=("invoice","name","contact","desc"),yscrollcommand=scrolly.set,xscrollcommand=scrollx.set)
         scrollx.pack(side=BOTTOM,fill=X)
         scrolly.pack(side=RIGHT,fill=Y)
@@ -74,7 +74,7 @@ class supplierClass:
         self.SupplierTable.column("name",width=100)
         self.SupplierTable.column("contact",width=100)
         self.SupplierTable.column("desc",width=100)
-        
+
         self.SupplierTable.pack(fill=BOTH,expand=1)
         self.SupplierTable.bind("<ButtonRelease-1>",self.get_data)
         self.show()

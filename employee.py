@@ -72,7 +72,7 @@ class employeeClass:
         cmb_utype=ttk.Combobox(self.root,textvariable=self.var_utype,values=("Admin","Employee"),state='readonly',justify=CENTER,font=("goudy old style",15))
         cmb_utype.place(x=850,y=230,width=180)
         cmb_utype.current(0)
-        
+
         #---------- row 4 ----------------
         lbl_address=Label(self.root,text="Address",font=("goudy old style",15),bg="white").place(x=50,y=270)
         lbl_salary=Label(self.root,text="Salary",font=("goudy old style",15),bg="white").place(x=500,y=270)
@@ -80,7 +80,7 @@ class employeeClass:
         self.txt_address=Text(self.root,font=("goudy old style",15),bg="lightyellow")
         self.txt_address.place(x=150,y=270,width=300,height=60)
         txt_salary=Entry(self.root,textvariable=self.var_salary,font=("goudy old style",15),bg="lightyellow").place(x=600,y=270,width=180)
-        
+
         #-------------- buttons -----------------
         btn_add=Button(self.root,text="Save",command=self.add,font=("goudy old style",15),bg="#2196f3",fg="white",cursor="hand2").place(x=500,y=305,width=110,height=28)
         btn_update=Button(self.root,text="Update",command=self.update,font=("goudy old style",15),bg="#4caf50",fg="white",cursor="hand2").place(x=620,y=305,width=110,height=28)
@@ -93,7 +93,7 @@ class employeeClass:
 
         scrolly=Scrollbar(emp_frame,orient=VERTICAL)
         scrollx=Scrollbar(emp_frame,orient=HORIZONTAL)\
-        
+
         self.EmployeeTable=ttk.Treeview(emp_frame,columns=("eid","name","email","gender","contact","dob","doj","pass","utype","address","salary"),yscrollcommand=scrolly.set,xscrollcommand=scrollx.set)
         scrollx.pack(side=BOTTOM,fill=X)
         scrolly.pack(side=RIGHT,fill=Y)
@@ -122,7 +122,7 @@ class employeeClass:
         self.EmployeeTable.column("utype",width=100)
         self.EmployeeTable.column("address",width=100)
         self.EmployeeTable.column("salary",width=100)
-        
+
         self.EmployeeTable.pack(fill=BOTH,expand=1)
         self.EmployeeTable.bind("<ButtonRelease-1>",self.get_data)
         self.show()
