@@ -2,6 +2,8 @@ from tkinter import*
 from PIL import Image,ImageTk
 from tkinter import ttk,messagebox
 import sqlite3
+import os
+from config import DB_PATH
 
 class supplierClass:
     def __init__(self,root):
@@ -80,7 +82,7 @@ class supplierClass:
         self.show()
 #-----------------------------------------------------------------------------------------------------
     def add(self):
-        con=sqlite3.connect(database=r'ims.db')
+        con=sqlite3.connect(database=DB_PATH)
         cur=con.cursor()
         try:
             if self.var_sup_invoice.get()=="":
@@ -105,7 +107,7 @@ class supplierClass:
             messagebox.showerror("Error",f"Error due to : {str(ex)}")
 
     def show(self):
-        con=sqlite3.connect(database=r'ims.db')
+        con=sqlite3.connect(database=DB_PATH)
         cur=con.cursor()
         try:
             cur.execute("select * from supplier")
@@ -127,7 +129,7 @@ class supplierClass:
         self.txt_desc.insert(END,row[3])
 
     def update(self):
-        con=sqlite3.connect(database=r'ims.db')
+        con=sqlite3.connect(database=DB_PATH)
         cur=con.cursor()
         try:
             if self.var_sup_invoice.get()=="":
@@ -151,7 +153,7 @@ class supplierClass:
             messagebox.showerror("Error",f"Error due to : {str(ex)}")
 
     def delete(self):
-        con=sqlite3.connect(database=r'ims.db')
+        con=sqlite3.connect(database=DB_PATH)
         cur=con.cursor()
         try:
             if self.var_sup_invoice.get()=="":
@@ -180,7 +182,7 @@ class supplierClass:
         self.show()
 
     def search(self):
-        con=sqlite3.connect(database=r'ims.db')
+        con=sqlite3.connect(database=DB_PATH)
         cur=con.cursor()
         try:
             if self.var_searchtxt.get()=="":

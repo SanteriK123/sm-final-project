@@ -10,6 +10,7 @@ from supplier import supplierClass
 from category import categoryClass
 from product import productClass
 from sales import salesClass
+from config import DB_PATH
 
 # ------------------ BASE PATH SETUP ------------------
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
@@ -192,7 +193,7 @@ class IMS:
         self.new_obj = salesClass(self.new_win)
 
     def update_content(self):
-        con = sqlite3.connect(database=os.path.join(BASE_DIR, 'ims.db'))
+        con = sqlite3.connect(database=DB_PATH)
         cur = con.cursor()
 
         try:

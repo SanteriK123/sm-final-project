@@ -3,14 +3,7 @@ from PIL import Image, ImageTk
 from tkinter import ttk, messagebox
 import sqlite3
 import os
-
-# ------------------ BASE PATH SETUP ------------------
-BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-IMAGE_DIR = os.path.join(BASE_DIR, "images")
-BILL_DIR = os.path.join(BASE_DIR, "bill")
-
-os.makedirs(BILL_DIR, exist_ok=True)
-# ---------------------------------------------------
+from config import IMAGE_DIR, BILL_DIR
 
 class salesClass:
     def __init__(self, root):

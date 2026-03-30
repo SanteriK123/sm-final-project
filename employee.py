@@ -2,6 +2,7 @@ from tkinter import*
 from PIL import Image,ImageTk
 from tkinter import ttk,messagebox
 import sqlite3
+from config import DB_PATH
 
 class employeeClass:
     def __init__(self,root):
@@ -128,7 +129,7 @@ class employeeClass:
         self.show()
 #-----------------------------------------------------------------------------------------------------
     def add(self):
-        con=sqlite3.connect(database=r'ims.db')
+        con=sqlite3.connect(database=DB_PATH)
         cur=con.cursor()
         try:
             if self.var_emp_id.get()=="":
@@ -160,7 +161,7 @@ class employeeClass:
             messagebox.showerror("Error",f"Error due to : {str(ex)}")
 
     def show(self):
-        con=sqlite3.connect(database=r'ims.db')
+        con=sqlite3.connect(database=DB_PATH)
         cur=con.cursor()
         try:
             cur.execute("select * from employee")
@@ -189,7 +190,7 @@ class employeeClass:
         self.var_salary.set(row[10])
 
     def update(self):
-        con=sqlite3.connect(database=r'ims.db')
+        con=sqlite3.connect(database=DB_PATH)
         cur=con.cursor()
         try:
             if self.var_emp_id.get()=="":
@@ -220,7 +221,7 @@ class employeeClass:
             messagebox.showerror("Error",f"Error due to : {str(ex)}")
 
     def delete(self):
-        con=sqlite3.connect(database=r'ims.db')
+        con=sqlite3.connect(database=DB_PATH)
         cur=con.cursor()
         try:
             if self.var_emp_id.get()=="":
@@ -257,7 +258,7 @@ class employeeClass:
         self.show()
 
     def search(self):
-        con=sqlite3.connect(database=r'ims.db')
+        con=sqlite3.connect(database=DB_PATH)
         cur=con.cursor()
         try:
             if self.var_searchby.get()=="Select":

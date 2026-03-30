@@ -2,6 +2,8 @@ from tkinter import*
 from PIL import Image,ImageTk
 from tkinter import ttk,messagebox
 import sqlite3
+import os
+from config import DB_PATH, IMAGE_DIR
 
 class categoryClass:
     def __init__(self,root):
@@ -46,20 +48,20 @@ class categoryClass:
         self.show()
 
         #----------------- images ---------------------
-        self.im1=Image.open("Inventory-Management-System/images/cat.jpg")
+        self.im1=Image.open(os.path.join(IMAGE_DIR, "cat.jpg"))
         self.im1=self.im1.resize((500,250))
         self.im1=ImageTk.PhotoImage(self.im1)
         self.lbl_im1=Label(self.root,image=self.im1,bd=2,relief=RAISED)
         self.lbl_im1.place(x=50,y=220)
 
-        self.im2=Image.open("Inventory-Management-System/images/category.jpg")
+        self.im2=Image.open(os.path.join(IMAGE_DIR, "category.jpg"))
         self.im2=self.im2.resize((500,250))
         self.im2=ImageTk.PhotoImage(self.im2)
         self.lbl_im2=Label(self.root,image=self.im2,bd=2,relief=RAISED)
         self.lbl_im2.place(x=580,y=220)
 #----------------------------------------------------------------------------------
     def add(self):
-        con=sqlite3.connect(database=r'ims.db')
+        con=sqlite3.connect(database=DB_PATH)
         cur=con.cursor()
         try:
             if self.var_name.get()=="":
@@ -81,7 +83,7 @@ class categoryClass:
             messagebox.showerror("Error",f"Error due to : {str(ex)}")
 
     def show(self):
-        con=sqlite3.connect(database=r'ims.db')
+        con=sqlite3.connect(database=DB_PATH)
         cur=con.cursor()
         try:
             cur.execute("select * from category")
@@ -105,7 +107,7 @@ class categoryClass:
         self.var_name.set(row[1])
 
     def delete(self):
-        con=sqlite3.connect(database=r'ims.db')
+        con=sqlite3.connect(database=DB_PATH)
         cur=con.cursor()
         try:
             if self.var_cat_id.get()=="":
