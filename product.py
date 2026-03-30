@@ -86,7 +86,7 @@ class productClass:
         scrolly.config(command=self.ProductTable.yview)
         self.ProductTable.heading("pid",text="P ID")
         self.ProductTable.heading("Category",text="Category")
-        self.ProductTable.heading("Supplier",text="Suppler")
+        self.ProductTable.heading("Supplier",text="Supplier")
         self.ProductTable.heading("name",text="Name")
         self.ProductTable.heading("price",text="Price")
         self.ProductTable.heading("qty",text="Quantity")
