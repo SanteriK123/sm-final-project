@@ -190,8 +190,15 @@ class billClass:
         self.lbl_amnt=Label(billMenuFrame,text="Bill Amount\n[0]",font=("goudy old style",15,"bold"),bg="#3f51b5",fg="white")
         self.lbl_amnt.place(x=2,y=5,width=120,height=70)
 
-        self.lbl_discount=Label(billMenuFrame,text="Discount\n[5%]",font=("goudy old style",15,"bold"),bg="#8bc34a",fg="white")
-        self.lbl_discount.place(x=124,y=5,width=120,height=70)
+        self.var_discount=StringVar(value="5")
+        lbl_dis_per=Label(billMenuFrame,text="Discount (%)",font=("goudy old style",12,"bold"),bg="white",bd=2,relief=RIDGE)
+        lbl_dis_per.place(x=124,y=5,width=120,height=20)
+        txt_dis_per=Entry(billMenuFrame,textvariable=self.var_discount,font=("goudy old style",12,"bold"),bg="lightyellow",justify=CENTER)
+        txt_dis_per.place(x=124,y=25,width=120,height=50)
+
+        # Gemini helped with this, since bill_update doesn't take event as parameter
+        # lambda e "swallows" it. Also updates on key press instead of mouse press
+        txt_dis_per.bind("<KeyRelease>",lambda e: self.bill_update())
 
         self.lbl_net_pay=Label(billMenuFrame,text="Net Pay\n[0]",font=("goudy old style",15,"bold"),bg="#607d8b",fg="white")
         self.lbl_net_pay.place(x=246,y=5,width=160,height=70)
@@ -311,7 +318,14 @@ class billClass:
         self.discount=0
         for row in self.cart_list:
             self.bill_amnt=self.bill_amnt+(float(row[2])*int(row[3]))
-        self.discount=(self.bill_amnt*5)/100
+
+        discount=0
+        if self.var_discount.get()=="":
+            discount=0
+        else:
+            discount=float(self.var_discount.get())
+
+        self.discount=(self.bill_amnt*discount)/100
         self.net_pay=self.bill_amnt-self.discount
         self.lbl_amnt.config(text=f"Bill Amnt\n{str(self.bill_amnt)}")
         self.lbl_net_pay.config(text=f"Net Pay\n{str(self.net_pay)}")
@@ -416,6 +430,8 @@ class billClass:
         self.txt_bill_area.delete('1.0',END)
         self.cartTitle.config(text=f"Cart \t Total Products: [0]")
         self.var_search.set("")
+        self.var_discount.set("5")
+        self.bill_update()
 
     def update_date_time(self):
         time_=time.strftime("%I:%M:%S")
