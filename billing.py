@@ -319,11 +319,16 @@ class billClass:
         for row in self.cart_list:
             self.bill_amnt=self.bill_amnt+(float(row[2])*int(row[3]))
 
+        # Get discount safely
         discount=0
-        if self.var_discount.get()=="":
-            discount=0
-        else:
-            discount=float(self.var_discount.get())
+        try:
+            val = self.var_discount.get()
+            if val == "":
+                discount = 0
+            else:
+                discount = float(val)
+        except Exception:
+            discount = 0
 
         self.discount=(self.bill_amnt*discount)/100
         self.net_pay=self.bill_amnt-self.discount
